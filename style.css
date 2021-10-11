@@ -1,3 +1,9 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 tr {
     width: 399px;
 }
@@ -46,4 +52,27 @@ table{
 }
 .d-none{
     display: none;
+}
+
+.player-panel{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10vh;
+    margin-top: 10vh;
+}
+
+.player-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+}
+.player-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+}
+.player-inactive{
+    opacity: 0.4;
 }
