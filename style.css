@@ -76,3 +76,17 @@ table{
 .player-inactive{
     opacity: 0.4;
 }
+
+.horizontal-line{
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 400px;
+    position: absolute;
+    transform: scaleX(0.0);
+    transition: transform 225ms ease-in-out;
+    z-index: 2;
+}
+.make-vertical{
+    transform: rotate(90deg) scaleX(0.0);
+    z-index: 2;
+}
