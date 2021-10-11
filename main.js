@@ -1,6 +1,7 @@
 "use strict";
 // fields is vector of all moves made
 let fields=[];
+// initalized to make cross the 0tth move
 let currentShape='cross';
 //break criteria
 let gameOver=false;
@@ -21,12 +22,14 @@ let checkLefttTopRightBot= array=>array[0]==array[4] && array[4]==array[8] && ar
 
 // shapeShipter calls the next player:
 // given a shapen it makes currentShape a circle if its a cross and viseVersa
+//will only be used on parameter currentShape
 let shapeShifter= shape=> currentShape= shape=='cross'? 'circle':'cross';
    
 
 
 
-// fillShape renders a game square , which is clickd on
+// fillShape renders all viseted game squares by calling draw() ,
+//checks for game end and inputs the current players move in the fields array
 
 function fillShape(id){
     //renders starts if its not gameOver || table Data already placed
@@ -36,12 +39,12 @@ if(!fields[id] && !gameOver){
     //next click on square will make it a move of not inactive player
    fields[id]=shapeShifter(currentShape);
    draw();
-   //checking winning condition
+   //checking winning condition. if wins is true animations inits and game gets aborted
    if (checkWin()){animateBar(fields);gameOver=true;}
 }
 }
 
-// i check for every entry in fields if its a cricle. if true ill remove d-none from circle in the table,else i show the cross
+// i check for every entry in fields if its a cricle. if true ill remove d-none from circle in the table at the index point,else i show the cross 
 function draw(){
     fields.forEach((shape,index)=>shape=='circle'?
     document.getElementsByClassName(index)[0].classList.remove('d-none')
@@ -51,7 +54,7 @@ function draw(){
 }
 
 
-//conditon checker using the inbefore created variables and piping them
+//conditon checker using the inbefore created variables and piping them into one callBack: true if ther is a win a row/col/diag
 let checkRowWinCondition= function (){
    return checkRow1(fields) || checkRow2(fields) || checkRow3(fields);
 }
@@ -83,11 +86,11 @@ function evalWinner(array){
 
 // inactivates player which had the last move
 function inacPlayer(currentShape){
-if(currentShape=='circle'){document.getElementById('player-1').classList.remove('player-inactive');
-document.getElementById('player-2').classList.add('player-inactive')}
+if(currentShape=='circle'){document.getElementById('player-2').classList.remove('player-inactive');
+document.getElementById('player-1').classList.add('player-inactive')}
 else {
-    document.getElementById('player-2').classList.remove('player-inactive');
-    document.getElementById('player-1').classList.add('player-inactive');
+    document.getElementById('player-1').classList.remove('player-inactive');
+    document.getElementById('player-2').classList.add('player-inactive');
 }
 }
 

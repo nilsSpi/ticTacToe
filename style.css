@@ -83,7 +83,7 @@ table {
 
 .horizontal-line {
     height: 10px;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(4, 68, 8, 0.6);
     width: 400px;
     position: absolute;
     transform: scaleX(0.0);
@@ -94,4 +94,8 @@ table {
 .make-vertical {
     transform: rotate(90deg) scaleX(0.0);
     z-index: 2;
+}
+
+.board{
+    position: relative;
 }
