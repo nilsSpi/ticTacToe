@@ -19,15 +19,17 @@ let checkLefttTopRightBot= array=>array[0]==array[4] && array[4]==array[8] && ar
 
 
 
-// shapeShipter calls the next player
-let shapeShifter= function(shape){ 
-    return currentShape= shape=='cross'? 'circle':'cross';
-};
+// shapeShipter calls the next player:
+// given a shapen it makes currentShape a circle if its a cross and viseVersa
+let shapeShifter= shape=> currentShape= shape=='cross'? 'circle':'cross';
+   
+
 
 
 // fillShape renders a game square , which is clickd on
 
 function fillShape(id){
+    //renders starts if its not gameOver || table Data already placed
 if(!fields[id] && !gameOver){
     //inactivates player of previous move
     inacPlayer(currentShape);
@@ -39,8 +41,7 @@ if(!fields[id] && !gameOver){
 }
 }
 
-// i check for every entry in fields if its a cricle. if true ill remove d-none from circle in the table
-
+// i check for every entry in fields if its a cricle. if true ill remove d-none from circle in the table,else i show the cross
 function draw(){
     fields.forEach((shape,index)=>shape=='circle'?
     document.getElementsByClassName(index)[0].classList.remove('d-none')
@@ -61,13 +62,13 @@ let checkColWinCondition =function (){
     return checkLeftBotRightTop(fields) || checkLefttTopRightBot(fields);
  }
 
-//win criteria definiton, returns true if and only if 3-in-row/col/diag was achieved
+//win criteria definiton, returns true if and only if at least one  3-in-row/col/diag was achieved
 function checkWin(){
     return checkRowWinCondition()||checkColWinCondition()||checkDiagWinCondition();
 }
 
 
-//just checks wich win-criteria was met and returns the winner: 'circle' || 'cross'
+//just checks whitch win-criteria was met and returns the winner: 'circle' || 'cross'
 function evalWinner(array){
     if( checkRow1(array)){return array[0]}
     else if(checkRow2(array)){return array[3]}
